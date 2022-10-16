@@ -22,6 +22,8 @@ def is_holiday(input_date, limit):
     try:
         if is_valid(input_date):
             calendar = Calendar(requests.get(url).text)
+            weekno = datetime.fromisoformat(input_date).weekday()
+            # print(weekno)
             found = False
             for e in calendar.events:
                 date_festival = e.begin.format("YYYY-MM-DD")
@@ -30,8 +32,11 @@ def is_holiday(input_date, limit):
                     found = True
                     print(date_festival, name_festival)
                     break
-            if not found:
+            if (not found and weekno >5):
+                print(input_date, 'giorno festivo')
+            elif (not found):
                 print(input_date, 'giorno lavorativo')
+
         else:
             print('Data non valida, usa il formato: YYYY-MM-DD')
             new_date_entry = input('Reinserire una data: ')
