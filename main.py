@@ -14,7 +14,8 @@ def is_valid(d):
 
 # Check if input is a holiday or not
 def is_holiday(input_date, limit):
-    if limit <= 0:
+    print(limit)
+    if limit <2:
         print('Tentativi finiti')
         return
     input_year = input_date[:4]
